@@ -60,7 +60,8 @@ namespace OrganizationApp.Controllers
                 Event = _event,
                 CompanyId = company.CompanyId,
                 EventId = _event.EventId,
-                Price = _event.TicketPrice * company.ProfitRate,
+                //Price = _event.TicketPrice * company.ProfitRate,
+                Price = Math.Round(_event.TicketPrice * company.ProfitRate / (decimal)5.0) * (decimal)5.0,
                 TicketCompany = company
             };
             await _ticketWriteRepository.AddAsync(ticket);
