@@ -10,6 +10,21 @@ using Microsoft.Extensions.Configuration;
 namespace Persistence.Contexts
 
 {
+    static class Configuration
+    {
+        static public string ConnectionString
+        {
+            get
+            {
+
+                ConfigurationManager configurationManager = new();
+                configurationManager.SetBasePath(Path.Combine(Directory.GetCurrentDirectory(), "C:\\Users\\akare\\OneDrive\\Masaüstü\\OrganizationApp\\OrganizationApp"));
+                configurationManager.AddJsonFile("appsettings.json");
+
+                return configurationManager.GetConnectionString("MSSQL");
+            }
+        }
+    }
 
     //public static class Configuration
     //{
@@ -28,19 +43,4 @@ namespace Persistence.Contexts
     //}
 
 
-    static class Configuration
-    {
-        static public string ConnectionString
-        {
-            get
-            {
-
-                ConfigurationManager configurationManager = new();
-                configurationManager.SetBasePath(Path.Combine(Directory.GetCurrentDirectory(), "C:\\Users\\akare\\OneDrive\\Masaüstü\\OrganizationApp\\OrganizationApp"));
-                configurationManager.AddJsonFile("appsettings.json");
-
-                return configurationManager.GetConnectionString("MSSQL");
-            }
-        }
-    }
 }

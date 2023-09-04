@@ -214,8 +214,8 @@ namespace OrganizationApp.Controllers
         public IActionResult DeleteEvent([FromRoute] int id)
         {
             Event _event = FindEventById(id);
-
-            if (_event != null)
+            Member member = LoggedMember();
+            if (_event != null && member.MemberId==_event.MemberId)
             {
                 if ((_event.LastApplyTime - DateTime.Now).Days > 5)
                 {
@@ -225,7 +225,7 @@ namespace OrganizationApp.Controllers
 
                 return BadRequest("Son 5 gun kala etkinlik silinemez.");
             }
-            return NotFound();
+            return NotFound("Etkinlik bulunamadı.");
         }
 
         [HttpPut]
