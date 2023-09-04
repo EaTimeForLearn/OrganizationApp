@@ -32,6 +32,8 @@ namespace Persistence.Repositories
 
         public bool Remove(int id)
         {
+            if(Table.Find(id)==null)
+                return false;
             EntityEntry entityEntry = Table.Remove(Table.Find(id));
             SaveAsync();
 

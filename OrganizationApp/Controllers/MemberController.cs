@@ -206,8 +206,10 @@ namespace OrganizationApp.Controllers
         public IActionResult DeleteMember(int id)
         {
 
-            _memberWriteRepository.Remove(id);
+           bool _return= _memberWriteRepository.Remove(id);
+            if(_return==true)
             return Ok();
+            return NotFound("kişi bulunaadı");
         }
 
         [HttpDelete("deleteEvent,{id}")]
